@@ -1,5 +1,8 @@
 package com.learning.cartoonbook.model;
 
+/**
+ * Cartoon model to manage cartoon
+ */
 public class Cartoon {
     private String name;
     private String provider;

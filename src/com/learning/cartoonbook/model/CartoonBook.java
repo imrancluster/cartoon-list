@@ -3,7 +3,12 @@ package com.learning.cartoonbook.model;
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * CartoonBook class to manage cartoons like
+ * Cartoons will be imported/exported
+ * It provides all providers
+ * It provides all cartoons according to providers
+ */
 public class CartoonBook {
     private List<Cartoon> cartoons;
 
@@ -11,6 +16,10 @@ public class CartoonBook {
         cartoons = new ArrayList<Cartoon>();
     }
 
+    /**
+     * It will save cartoons into the fileName
+     * @param fileName
+     */
     public void exportTo(String fileName) {
         try(
                 FileOutputStream fos = new FileOutputStream(fileName);
@@ -25,6 +34,11 @@ public class CartoonBook {
         }
     }
 
+    /**
+     * Cartoons will be imported from the file
+     * It will add cartoon in the cartoons list for next processing
+     * @param fileName
+     */
     public void importFrom(String fileName) {
         try(
                 FileInputStream fis = new FileInputStream(fileName);
@@ -42,6 +56,10 @@ public class CartoonBook {
         }
     }
 
+    /**
+     * Add a cartoon object in the cartoons list
+     * @param cartoon
+     */
     public void addCartoon(Cartoon cartoon) {
         cartoons.add(cartoon);
     }
@@ -50,6 +68,9 @@ public class CartoonBook {
         return cartoons.size();
     }
 
+    /**
+     * A Helper function
+     */
     private Map<String, List<Cartoon>> byProvider() {
         Map<String, List<Cartoon>> byProvider = new TreeMap<>();
 
@@ -69,6 +90,11 @@ public class CartoonBook {
         return byProvider().keySet();
     }
 
+    /**
+     * Created a sorted cartoons list from provider
+     * @param providerName
+     * @return
+     */
     public List<Cartoon> getCartoonsForProvider(String providerName) {
         List<Cartoon> cartoons = byProvider().get(providerName);
 
